@@ -1,0 +1,28 @@
+# Example only. Point these paths/ports at your actual deployment.
+tweet.stream {
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+        X-Frame-Options DENY
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    }
+    @core path /auth/* /api/* /mcp/* /health
+    handle @core {
+        reverse_proxy 127.0.0.1:3030 {
+            # SSE: flush streamed messages immediately.
+            flush_interval -1
+        }
+    }
+    handle {
+        root * /srv/tweet-stream-landing-page/dist
+        file_server
+    }
+    handle_errors {
+        @notFound expression {err.status_code} == 404
+        handle @notFound {
+            root * /srv/tweet-stream-landing-page/dist
+            rewrite * /404.html
+            file_server
+        }
+    }
+}
