@@ -1,8 +1,18 @@
-import sharp from 'sharp';
-import { readFile, writeFile } from 'node:fs/promises';
-const logo=await readFile('public/brand/icon.svg');
-for(const [name,size] of [['favicon-32',32],['apple-touch-icon',180],['icon-192',192],['icon-512',512],['mcp-icon',512]])await sharp(logo).resize(size,size).png().toFile(`public/brand/${name}.png`);
-const bird=await readFile('public/brand/bird.svg','utf8');
-const social=`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#102944"/><circle cx="1120" cy="180" r="440" fill="none" stroke="#294d6c" stroke-width="1"/><circle cx="1120" cy="180" r="320" fill="none" stroke="#294d6c" stroke-width="1"/><text x="75" y="86" font-family="Arial,sans-serif" fill="#c1d7e7" font-size="19" letter-spacing="3">OPEN-SOURCE X API &amp; MCP SERVER</text><text x="70" y="245" font-family="Arial,sans-serif" font-weight="bold" fill="#eaf2f8" font-size="95">GIVE YOUR AGENT</text><text x="70" y="355" font-family="Arial,sans-serif" font-weight="bold" fill="#49baff" font-size="112">HOME ICE.</text><rect x="75" y="421" width="480" height="3" fill="#d5f85c"/><text x="75" y="501" font-family="Arial,sans-serif" fill="#eaf2f8" font-size="32">tweet.stream</text><text x="75" y="549" font-family="Arial,sans-serif" fill="#a3bfd4" font-size="18">SIX TOOLS. YOUR KEYS. YOUR GAME.</text><g transform="translate(950 415) scale(2.3)">${bird.replace(/<svg[^>]*>|<\/svg>/g,'')}</g></svg>`;
-await writeFile('public/brand/social.svg',social);await sharp(Buffer.from(social)).png().toFile('public/brand/social.png');
-console.log('Generated favicon, Apple touch icon, app icons, MCP icon, and social image.');
+import sharp from "sharp";
+import { readFile, writeFile } from "node:fs/promises";
+const logo = await readFile("public/brand/icon.svg");
+for (const [name, size] of [
+  ["favicon-32", 32],
+  ["apple-touch-icon", 180],
+  ["icon-192", 192],
+  ["icon-512", 512],
+  ["mcp-icon", 512],
+])
+  await sharp(logo).resize(size, size).png().toFile(`public/brand/${name}.png`);
+const bird = await readFile("public/brand/bird.svg", "utf8");
+const social = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="#102944"/><circle cx="1120" cy="180" r="440" fill="none" stroke="#294d6c" stroke-width="1"/><circle cx="1120" cy="180" r="320" fill="none" stroke="#294d6c" stroke-width="1"/><text x="75" y="86" font-family="Arial,sans-serif" fill="#c1d7e7" font-size="19" letter-spacing="3">OPEN-SOURCE X API &amp; MCP SERVER</text><text x="70" y="245" font-family="Arial,sans-serif" font-weight="bold" fill="#eaf2f8" font-size="95">GIVE YOUR AGENT</text><text x="70" y="355" font-family="Arial,sans-serif" font-weight="bold" fill="#49baff" font-size="112">HOME ICE.</text><rect x="75" y="421" width="480" height="3" fill="#d5f85c"/><text x="75" y="501" font-family="Arial,sans-serif" fill="#eaf2f8" font-size="32">tweet.stream</text><text x="75" y="549" font-family="Arial,sans-serif" fill="#a3bfd4" font-size="18">SIX TOOLS. YOUR KEYS. YOUR GAME.</text><g transform="translate(950 415) scale(2.3)">${bird.replace(/<svg[^>]*>|<\/svg>/g, "")}</g></svg>`;
+await writeFile("public/brand/social.svg", social);
+await sharp(Buffer.from(social)).png().toFile("public/brand/social.png");
+console.log(
+  "Generated favicon, Apple touch icon, app icons, MCP icon, and social image.",
+);

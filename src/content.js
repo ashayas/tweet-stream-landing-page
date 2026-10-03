@@ -1,14 +1,106 @@
-export const source = 'https://github.com/ashayas/tweetstream';
+export const source = "https://github.com/ashayas/tweetstream";
 export const tools = [
-  { name: 'post_tweet', role: 'THE FINISHER', title: 'Turn a thought into a post.', description: 'Give your agent the final pass. Publish a post or quote a conversation on X, using your connected account.', input: '{ "text": "Good things are built in the open. 🏒" }', output: '{ "id": "demo_post_01", "text": "Good things are built in the open. 🏒" }', point: [-3.7, 1.6] },
-  { name: 'reply_to_tweet', role: 'THE PLAYMAKER', title: 'Keep the conversation moving.', description: 'Reply to a specific post with the context your agent needs. You choose the conversation and the play.', input: '{ "tweet_id": "1234567890", "text": "Let’s build it." }', output: '{ "id": "demo_reply_01", "text": "Let’s build it." }', point: [-0.8, 1.85] },
-  { name: 'get_tweet', role: 'THE SCOUT', title: 'Read the play before you act.', description: 'Fetch a post, its author, and engagement metrics. Bring useful context into your next agent workflow.', input: '{ "tweet_id": "1234567890" }', output: '{ "id": "1234567890", "text": "An example post", "likes": 12 }', point: [3, 1.7] },
-  { name: 'read_timeline', role: 'THE LOOKOUT', title: 'Know what’s happening on the ice.', description: 'Read recent posts from your home timeline. Availability depends on the access granted to your X API account.', input: '{ "limit": 10 }', output: '{ "posts": ["…recent posts from X"] }', point: [-3.7, -1.7] },
-  { name: 'search_tweets', role: 'THE TRACKER', title: 'Find your next opening.', description: 'Search recent posts by query and give your agent a useful starting point. X access and rate limits apply.', input: '{ "query": "open source", "limit": 10 }', output: '{ "posts": ["…matching posts from X"] }', point: [-0.8, -1.85] },
-  { name: 'get_my_profile', role: 'THE CAPTAIN', title: 'Know who you’re playing as.', description: 'Inspect the authenticated account’s profile, handle, bio, and follower count before your agent takes a turn.', input: '{}', output: '{ "username": "your_handle", "name": "Your name" }', point: [3, -1.7] },
+  {
+    name: "post_tweet",
+    role: "THE FINISHER",
+    title: "Turn a thought into a post.",
+    description:
+      "Give your agent the final pass. Publish a post or quote a conversation on X, using your connected account.",
+    input: '{ "text": "Good things are built in the open. 🏒" }',
+    output:
+      '{ "id": "demo_post_01", "text": "Good things are built in the open. 🏒" }',
+    point: [-3.7, 1.6],
+  },
+  {
+    name: "reply_to_tweet",
+    role: "THE PLAYMAKER",
+    title: "Keep the conversation moving.",
+    description:
+      "Reply to a specific post with the context your agent needs. You choose the conversation and the play.",
+    input: '{ "tweet_id": "1234567890", "text": "Let’s build it." }',
+    output: '{ "id": "demo_reply_01", "text": "Let’s build it." }',
+    point: [-0.8, 1.85],
+  },
+  {
+    name: "get_tweet",
+    role: "THE SCOUT",
+    title: "Read the play before you act.",
+    description:
+      "Fetch a post, its author, and engagement metrics. Bring useful context into your next agent workflow.",
+    input: '{ "tweet_id": "1234567890" }',
+    output: '{ "id": "1234567890", "text": "An example post", "likes": 12 }',
+    point: [3, 1.7],
+  },
+  {
+    name: "read_timeline",
+    role: "THE LOOKOUT",
+    title: "Know what’s happening on the ice.",
+    description:
+      "Read recent posts from your home timeline. Availability depends on the access granted to your X API account.",
+    input: '{ "limit": 10 }',
+    output: '{ "posts": ["…recent posts from X"] }',
+    point: [-3.7, -1.7],
+  },
+  {
+    name: "search_tweets",
+    role: "THE TRACKER",
+    title: "Find your next opening.",
+    description:
+      "Search recent posts by query and give your agent a useful starting point. X access and rate limits apply.",
+    input: '{ "query": "open source", "limit": 10 }',
+    output: '{ "posts": ["…matching posts from X"] }',
+    point: [-0.8, -1.85],
+  },
+  {
+    name: "get_my_profile",
+    role: "THE CAPTAIN",
+    title: "Know who you’re playing as.",
+    description:
+      "Inspect the authenticated account’s profile, handle, bio, and follower count before your agent takes a turn.",
+    input: "{}",
+    output: '{ "username": "your_handle", "name": "Your name" }',
+    point: [3, -1.7],
+  },
 ];
 export const configs = {
-  local: {label:'Local MCP', file:'mcp.json', code: JSON.stringify({mcpServers:{'tweet-stream':{command:'node',args:['/absolute/path/to/tweet_stream/dist/cli.js'],env:{X_USER_ACCESS_TOKEN:'YOUR_X_USER_ACCESS_TOKEN'}}}},null,2), note:'Build the open-source server first. Replace the absolute path and use your own X user access token. Your client runs the server locally.'},
-  remote: {label:'Remote MCP', file:'mcp.json', code: JSON.stringify({mcpServers:{'tweet-stream':{url:'https://tweet.stream/mcp/sse?key=YOUR_TWEET_STREAM_TOKEN'}}},null,2), note:'For a configured hosted server and an SSE-compatible MCP client. Get a token through Connect with X. Treat the complete URL as a secret.'},
-  rest: {label:'REST API', file:'terminal', code:'curl https://tweet.stream/api/v1/me \\\n  -H "Authorization: Bearer YOUR_TWEET_STREAM_TOKEN"', note:'Use your hosted tweet.stream token in the Authorization header. Hosting must be configured before these production endpoints are available.'},
+  local: {
+    label: "Local MCP",
+    file: "mcp.json",
+    code: JSON.stringify(
+      {
+        mcpServers: {
+          "tweet-stream": {
+            command: "node",
+            args: ["/absolute/path/to/tweet_stream/dist/cli.js"],
+            env: { X_USER_ACCESS_TOKEN: "YOUR_X_USER_ACCESS_TOKEN" },
+          },
+        },
+      },
+      null,
+      2,
+    ),
+    note: "Build the open-source server first. Replace the absolute path and use your own X user access token. Your client runs the server locally.",
+  },
+  remote: {
+    label: "Remote MCP",
+    file: "mcp.json",
+    code: JSON.stringify(
+      {
+        mcpServers: {
+          "tweet-stream": {
+            url: "https://tweet.stream/mcp/sse?key=YOUR_TWEET_STREAM_TOKEN",
+          },
+        },
+      },
+      null,
+      2,
+    ),
+    note: "For a configured hosted server and an SSE-compatible MCP client. Get a token through Connect with X. Treat the complete URL as a secret.",
+  },
+  rest: {
+    label: "REST API",
+    file: "terminal",
+    code: 'curl https://tweet.stream/api/v1/me \\\n  -H "Authorization: Bearer YOUR_TWEET_STREAM_TOKEN"',
+    note: "Use your hosted tweet.stream token in the Authorization header. Hosting must be configured before these production endpoints are available.",
+  },
 };

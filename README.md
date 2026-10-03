@@ -20,7 +20,7 @@ npm run preview
 # http://127.0.0.1:4173
 ```
 
-`dist/` is a static deployable site. `/privacy` and `/tos` have generated HTML and remain readable with JavaScript disabled. `/contact` has a dedicated build entry. The homepage loads the 3D module lazily; legal pages do not load it.
+`dist/` is a static deployable site. `/privacy` and `/tos` have generated HTML and remain readable with JavaScript disabled. `/contact` also includes readable static HTML. The homepage loads the 3D module lazily; legal pages do not load it.
 
 ## The experience
 
@@ -69,6 +69,7 @@ No production deployment or DNS change is performed by local development.
 npm test
 npx playwright test # local Google Chrome; starts or reuses Vite on 5173
 npm run build
+npm run test:production # checks the built site and JavaScript-disabled legal pages
 ```
 
 Tests cover shot outcomes, six tool selectors, keyboard tab navigation, scoring and misses, clipboard configurations, direct legal routes, mobile overflow, reduced motion, and WebGL failure.
