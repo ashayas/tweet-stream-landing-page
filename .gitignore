@@ -9,3 +9,4 @@ playwright-report/
 
 .agent-grid/
 *.blend1
+.wrangler/

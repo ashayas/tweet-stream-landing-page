@@ -1,0 +1,46 @@
+name = "tweet-stream-landing-router"
+main = "index.js"
+compatibility_date = "2026-10-03"
+workers_dev = false
+
+# The root documents and their assets load from Pages. API, OAuth, MCP,
+# health checks, and every other request continue to the configured origin.
+[[routes]]
+pattern = "tweet.stream/"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/privacy*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/tos*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/contact*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/assets/*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/brand/*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/favicon.svg*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/site.webmanifest*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/robots.txt*"
+zone_name = "tweet.stream"
+
+[[routes]]
+pattern = "tweet.stream/sitemap.xml*"
+zone_name = "tweet.stream"

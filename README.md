@@ -55,13 +55,19 @@ Product/tool copy and connection snippets: `src/content.js`. Policy copy: `src/l
 
 The static site does not deploy the hosted API. Connection snippets for `tweet.stream` become usable only when that API is configured and routed. The local MCP snippet uses a built checkout instead of assuming an npm publication exists.
 
-## Deployment on tweet.stream
+## Cloudflare deployment
 
-Serve `dist/` at `/`, `/privacy`, `/tos`, and `/contact`. Keep `/auth/*`, `/api/*`, `/mcp/*`, and `/health` routed to the **core server**. Do not rewrite those paths to this site. A reverse-proxy example is in `deploy/Caddyfile.example`. Configure TLS at the host; set the X callback to `https://tweet.stream/auth/callback` in the core service.
+`tweet-stream-landing-page.pages.dev` is the static Pages deployment. A small Worker in `router/` serves the homepage, policies, contact page, and public site assets at `https://tweet.stream`. It does not change DNS. It forwards requests that do not match those paths to the configured zone origin, so the existing `/auth/*`, `/api/*`, `/mcp/*`, and `/health` routes continue to reach the core server.
+
+Sign in with `npx wrangler login`, copy `.env.example` to `.env`, and run `npm run deploy`. This builds and publishes Pages first, then attaches the narrow hostname routes in `router/wrangler.toml`. Direct Upload is intentional; this Pages project is not attached to GitHub Actions. The repositories remain independent.
+
+To publish just the static Pages site, run `npm run build`, then `npx wrangler pages deploy dist --project-name tweet-stream-landing-page --branch main --env-file .env`. Publishing the main hostname routes is a separate `npx wrangler deploy --config router/wrangler.toml --env-file .env` step.
+
+The static site and its route Worker do not deploy the core API. A reverse-proxy example for hosting the core server is in `deploy/Caddyfile.example`. Configure TLS at the host; set the X callback to `https://tweet.stream/auth/callback` in the core service.
 
 Use directory indexes / clean URLs. Return `dist/404.html` with status 404 for unknown static paths. `public/_headers` is provided for static hosts supporting that convention. Apply equivalent response headers on other hosts. `robots.txt`, `sitemap.xml`, Open Graph tags, favicon and web manifest are included.
 
-No production deployment or DNS change is performed by local development.
+Local development does not publish files or change Worker routes.
 
 ## Validation
 
