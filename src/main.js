@@ -89,13 +89,11 @@ if (policy) {
       );
     window.dispatchEvent(new CustomEvent("tool-selected", { detail: index }));
     if (fromRink)
-      document
-        .querySelector("#playbook")
-        .scrollIntoView({
-          behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-            ? "instant"
-            : "smooth",
-        });
+      document.querySelector("#playbook").scrollIntoView({
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+      });
   }
   document
     .querySelectorAll("[data-tool]")
