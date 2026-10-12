@@ -7,9 +7,8 @@ test("desktop rink loads without errors and every tool is selectable", async ({
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await expect(page.locator("#arena")).toHaveAttribute("data-ready", "true");
-  await expect(
-    page.getByRole("heading", { name: "GIVE YOUR AGENT HOME ICE." }),
-  ).toBeVisible();
+  await expect(page.locator("#hero-title")).toBeVisible();
+  await expect(page.locator("#hero-title")).toContainText("TWEET FROM");
   await expect(page.locator(".hotspot")).toHaveCount(6);
   await page
     .getByRole("button", { name: "Explore search_tweets", exact: true })
