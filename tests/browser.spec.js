@@ -62,15 +62,58 @@ test("connection tabs and clipboard use the selected configuration", async ({
   await page.goto("/");
   await page.locator("#config-rest").click();
   await expect(page.locator("#config-code")).toContainText(
-    "curl https://tweet.stream/api/v1/me",
+    "curl http://localhost:3030/api/v1/me",
   );
   await page.locator("#copy-config").click();
   await expect(page.locator("#copy-config")).toHaveText("Copied ✓");
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
     "Authorization: Bearer",
   );
-  await page.locator("#config-remote").click();
-  await expect(page.locator("#config-code")).toContainText("/mcp/sse?key=");
+  await expect(page.locator("[data-config=remote]")).toHaveCount(0);
+  await page.locator("#config-byoc").click();
+  await expect(page.locator("#config-code")).toContainText("X_API_KEY");
+  await expect(page.locator("#config-code")).toContainText("npx");
+  await page.locator("#config-local").click();
+  await expect(page.locator("#config-code")).toContainText("TOKEN_STORE_PATH");
+  await expect(page.locator("#config-code")).toContainText(
+    "TWEET_STREAM_API_KEY",
+  );
+});
+test("the three parts of the ice explain BYOC, local MCP, and autonomous tools", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator("#rink-zones")).toBeVisible();
+  await expect(
+    page.locator("#rink-zones").getByText("DEFENSIVE ZONE", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.locator("#rink-zones").getByText("NEUTRAL ZONE", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.locator("#rink-zones").getByText("ATTACKING ZONE", { exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("#tool-zone")).toContainText("DEFENSIVE ZONE");
+  await expect(page.locator("#rink-zones")).toContainText(
+    "Bring Your Own Credentials (BYOC)",
+  );
+});
+test("the X app guide explains user-owned OAuth, local setup, and real posting", async ({
+  page,
+}) => {
+  await page.goto("/#x-app");
+  await expect(
+    page.getByRole("heading", { name: /REGISTER YOUR OWN X APP/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("http://localhost:3030/auth/callback", { exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText(/There is no shared hosted MCP/)).toBeVisible();
+  await expect(page.locator("#config-code")).toContainText("TOKEN_STORE_PATH");
+  await expect(page.locator("#x-app")).toContainText("post_tweet");
+  await expect(page.locator("#config-code")).toContainText(
+    "TWEET_STREAM_API_KEY",
+  );
 });
 test("policy routes, contact, and unknown route render directly", async ({
   page,

@@ -634,6 +634,113 @@ h2 span {
   max-width: 360px;
   margin: 0 0 6px;
 }
+.rink-zones {
+  background: #0d2238;
+}
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.zone-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 36px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.zone-card:hover {
+  transform: translateY(-2px);
+  border-color: #49baff88;
+}
+.zone-card.featured {
+  border-color: #49baff55;
+  background: linear-gradient(180deg, #15385d 0%, #15324f 100%);
+}
+.zone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.zone-pill {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+.zone-pill.defensive {
+  background: #ee716f1a;
+  color: #ee716f;
+  border: 1px solid #ee716f44;
+}
+.zone-pill.neutral {
+  background: #d5f85c18;
+  color: var(--lime);
+  border: 1px solid #d5f85c44;
+}
+.zone-pill.attacking {
+  background: #49baff1a;
+  color: var(--blue);
+  border: 1px solid #49baff44;
+}
+.zone-coords {
+  font-family: monospace;
+  font-size: 10px;
+  color: #6d8ba6;
+}
+.zone-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.zone-card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+.zone-card code {
+  color: var(--lime);
+  background: #00000033;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.zone-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+.zone-foot-label {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #6f8ea9;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.zone-tool-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.zone-tool-tags span {
+  font-family: monospace;
+  font-size: 10px;
+  background: #0f243b;
+  border: 1px solid #2f5170;
+  padding: 3px 8px;
+  color: #b7cbdd;
+  border-radius: 2px;
+}
 .tool-tabs {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -674,6 +781,27 @@ h2 span {
 .tool-description {
   position: relative;
   padding-right: 10px;
+}
+.tool-role-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.tool-role-row > .eyebrow {
+  color: var(--blue);
+  margin-bottom: 0;
+}
+.zone-badge {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--lime);
+  background: #d5f85c14;
+  border: 1px solid #d5f85c33;
+  padding: 3px 8px;
+  border-radius: 2px;
 }
 .tool-description > .eyebrow {
   color: var(--blue);
@@ -863,6 +991,121 @@ pre {
 .config-area {
   padding-top: 42px;
   min-width: 0;
+}
+
+.app-guide {
+  background: #102944;
+}
+.app-guide-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 36px;
+  margin-bottom: 42px;
+}
+.app-guide-head .eyebrow {
+  color: #a2b9cd;
+  margin-bottom: 20px;
+}
+.app-guide-head h2 {
+  margin: 0;
+}
+.app-guide-head > p {
+  max-width: 390px;
+  font-size: 13px;
+  margin: 0 0 5px;
+}
+.app-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.app-guide-card {
+  min-width: 0;
+  padding: 26px;
+  border: 1px solid #35516b;
+  border-radius: 5px;
+  background: #0c2239;
+}
+.app-guide-card > .eyebrow {
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+.app-guide-card h3 {
+  font:
+    600 22px/1.1 "Barlow Condensed",
+    sans-serif;
+  margin-bottom: 15px;
+}
+.app-guide-card ol {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+.app-guide-card li,
+.app-guide-card > p {
+  color: #afc2d4;
+  font-size: 12px;
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+.app-guide-card li::marker {
+  color: var(--blue);
+}
+.app-guide-card strong {
+  color: var(--ink);
+}
+.app-guide-card a,
+.app-guide-source a {
+  text-decoration: underline;
+  text-decoration-color: #7799b5;
+  text-underline-offset: 3px;
+}
+.app-guide-card code {
+  color: #d5f85c;
+  overflow-wrap: anywhere;
+}
+.app-guide-card pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 14px;
+  margin: 12px 0 17px;
+  border: 1px solid #284560;
+  border-radius: 4px;
+  background: #071a2c;
+  color: #d8e7f3;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.app-guide-card .guide-footnote {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+}
+.app-guide-card.hosted-card {
+  border-color: rgba(213, 248, 92, 0.44);
+  background: #172b36;
+}
+.app-guide-card.hosted-card > .eyebrow {
+  color: var(--lime);
+}
+.app-guide-source {
+  margin: 26px 0 0;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .app-guide-head {
+    display: block;
+  }
+  .app-guide-head > p {
+    margin-top: 22px;
+  }
+  .app-guide-grid {
+    grid-template-columns: 1fr;
+  }
+  .app-guide-card {
+    padding: 22px;
+  }
 }
 .config-tabs {
   display: flex;
@@ -1347,6 +1590,10 @@ pre {
   .setup,
   .faq {
     gap: 35px;
+  }
+  .zones-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
   .section {
     padding: 75px 5%;

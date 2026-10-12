@@ -3,6 +3,7 @@ export const tools = [
   {
     name: "post_tweet",
     role: "THE FINISHER",
+    zone: "DEFENSIVE ZONE · BYOC",
     title: "Turn a thought into a post.",
     description:
       "Give your agent the final pass. Publish a post or quote a conversation on X, using your connected account.",
@@ -14,6 +15,7 @@ export const tools = [
   {
     name: "reply_to_tweet",
     role: "THE PLAYMAKER",
+    zone: "NEUTRAL ZONE · TRANSITION",
     title: "Keep the conversation moving.",
     description:
       "Reply to a specific post with the context your agent needs. You choose the conversation and the play.",
@@ -24,6 +26,7 @@ export const tools = [
   {
     name: "get_tweet",
     role: "THE SCOUT",
+    zone: "ATTACKING ZONE · PLAY",
     title: "Read the play before you act.",
     description:
       "Fetch a post, its author, and engagement metrics. Bring useful context into your next agent workflow.",
@@ -34,6 +37,7 @@ export const tools = [
   {
     name: "read_timeline",
     role: "THE LOOKOUT",
+    zone: "DEFENSIVE ZONE · BYOC",
     title: "Know what’s happening on the ice.",
     description:
       "Read recent posts from your home timeline. Availability depends on the access granted to your X API account.",
@@ -44,6 +48,7 @@ export const tools = [
   {
     name: "search_tweets",
     role: "THE TRACKER",
+    zone: "NEUTRAL ZONE · TRANSITION",
     title: "Find your next opening.",
     description:
       "Search recent posts by query and give your agent a useful starting point. X access and rate limits apply.",
@@ -54,6 +59,7 @@ export const tools = [
   {
     name: "get_my_profile",
     role: "THE CAPTAIN",
+    zone: "ATTACKING ZONE · PLAY",
     title: "Know who you’re playing as.",
     description:
       "Inspect the authenticated account’s profile, handle, bio, and follower count before your agent takes a turn.",
@@ -64,7 +70,7 @@ export const tools = [
 ];
 export const configs = {
   local: {
-    label: "Local MCP",
+    label: "Your X app · local",
     file: "mcp.json",
     code: JSON.stringify(
       {
@@ -72,35 +78,45 @@ export const configs = {
           "tweet-stream": {
             command: "node",
             args: ["/absolute/path/to/tweet_stream/dist/cli.js"],
-            env: { X_USER_ACCESS_TOKEN: "YOUR_X_USER_ACCESS_TOKEN" },
+            env: {
+              TWEET_STREAM_API_KEY: "ts_live_YOUR_LOCAL_KEY",
+              TOKEN_STORE_PATH: "/absolute/path/to/tweetstream/.tokens.json",
+            },
           },
         },
       },
       null,
       2,
     ),
-    note: "Build the open-source server first. Replace the absolute path and use your own X user access token. Your client runs the server locally.",
+    note: "Recommended: create your own X app, run the local OAuth server once, then paste its one-time ts_live key and token-store path here. X usage is billed to your app.",
   },
-  remote: {
-    label: "Remote MCP",
+  byoc: {
+    label: "BYOC · Direct Keys",
     file: "mcp.json",
     code: JSON.stringify(
       {
         mcpServers: {
           "tweet-stream": {
-            url: "https://tweet.stream/mcp/sse?key=YOUR_TWEET_STREAM_TOKEN",
+            command: "npx",
+            args: ["-y", "tweet-stream"],
+            env: {
+              X_API_KEY: "your_consumer_key",
+              X_API_SECRET: "your_consumer_secret",
+              X_ACCESS_TOKEN: "your_access_token",
+              X_ACCESS_TOKEN_SECRET: "your_access_token_secret",
+            },
           },
         },
       },
       null,
       2,
     ),
-    note: "For a configured hosted server and an SSE-compatible MCP client. Get a token through Connect with X. Treat the complete URL as a secret.",
+    note: "Bring Your Own Credentials: Run directly with your X Developer Portal keys. No local server needed, zero keys stored on external servers, and zero shared usage cost.",
   },
   rest: {
     label: "REST API",
     file: "terminal",
-    code: 'curl https://tweet.stream/api/v1/me \\\n  -H "Authorization: Bearer YOUR_TWEET_STREAM_TOKEN"',
-    note: "Use your hosted tweet.stream token in the Authorization header. Hosting must be configured before these production endpoints are available.",
+    code: 'curl http://localhost:3030/api/v1/me \\\n  -H "Authorization: Bearer YOUR_LOCAL_TWEET_STREAM_TOKEN"',
+    note: "For the Node server you started on this machine. Requests use the X app configured in its .env file and are billed to your X developer project.",
   },
 };

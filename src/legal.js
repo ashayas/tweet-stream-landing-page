@@ -7,7 +7,7 @@ export const policies = {
     sections: [
       [
         "Who we are",
-        "tweet.stream is an X API and Model Context Protocol (MCP) project maintained by Vartabase AI. This policy covers the tweet.stream website and any tweet.stream service we operate. If you run the open-source software yourself, you control that installation and are responsible for its data practices. Independent hosts and AI clients have their own policies.",
+        "tweet.stream is an X API and Model Context Protocol (MCP) project maintained by Vartabase AI. This policy covers the public website. The open-source MCP software is intended to be run by you on infrastructure you control; self-hosters are responsible for their installation and data practices. AI clients and X have their own policies.",
       ],
       [
         "When you visit this website",
@@ -15,11 +15,11 @@ export const policies = {
       ],
       [
         "When you connect an X account",
-        "A configured hosted service uses X OAuth 2.0 with PKCE. You authorize access on X; we do not ask for your X password. The server receives your X user ID, username, display name, access token, refresh token when issued, token expiry, and connection date. It creates a tweet.stream API key to authenticate your requests. The requested scopes are tweet.read, tweet.write, users.read, and offline.access.",
+        "The public website does not connect to X accounts or receive OAuth credentials. When you run your own copy, its OAuth server receives the X account data and permissions required for the actions you request. The self-hosted software requests tweet.read, tweet.write, users.read, media.write, and offline.access scopes.",
       ],
       [
         "How the service uses information",
-        "The hosted server uses credentials to authenticate requests, refresh access when permitted, and carry out API or MCP calls you or your authorized client initiate. Requests can include post text, replies, post identifiers, search queries, and requested timeline data. Relevant information is sent to X to fulfill the request and the result is returned to the requesting client. We do not sell personal information or use it for advertising.",
+        "A self-hosted server uses credentials to authenticate requests and carry out API or MCP calls you or your authorized client initiate. Requests may include post text, replies, post identifiers, search queries, and requested timeline data. Relevant information is sent to X by the server you operate to fulfill the request. The public website does not process these requests.",
       ],
       [
         "AI clients and other recipients",
@@ -27,11 +27,11 @@ export const policies = {
       ],
       [
         "Storage and retention",
-        "The current open-source server persists connected-account credentials and profile fields in an operator-controlled token-store file. Its default implementation does not provide automatic expiry-based deletion of stored sessions. Records remain until removed by the operator or replaced on reconnection. The landing page does not collect or store these credentials. Request bodies are processed to fulfill calls; infrastructure logs and any copies retained by your AI client are managed separately by their operators.",
+        "The open-source Node server stores connected-account credentials and profile fields in an operator-controlled token-store file and restricts that file to the service account on POSIX hosts. Its default implementation does not provide automatic expiry-based deletion of stored sessions. The optional Cloudflare Worker implementation encrypts X tokens in the self-hoster's D1 database using a secret encryption key. The landing page does not collect or store these credentials. Request bodies are processed to fulfill calls; infrastructure logs and any copies retained by your AI client are managed separately by their operators.",
       ],
       [
         "Disconnecting and deletion",
-        "You can revoke tweet.stream in X’s Settings → Security and account access → Apps and sessions → Connected apps. Revoking access stops future authorized X calls but does not itself remove an existing token-store record or delete posts already published to X. To request deletion of a hosted account record, contact the maintainer through the contact page. For a self-hosted instance, ask its operator to remove your record and associated copies. Manage published posts directly on X. Never include API keys, tokens, or private account information in a public issue.",
+        "You can revoke tweet.stream in X’s Settings → Security and account access → Apps and sessions → Connected apps. Revoking access stops future authorized X calls but does not itself remove an existing token-store record or delete posts already published to X. For a self-hosted instance, remove your session from the token store and any backups you control. Manage published posts directly on X. Never include API keys, tokens, or private account information in a public issue.",
       ],
       [
         "Your choices and rights",
@@ -55,11 +55,11 @@ export const policies = {
     sections: [
       [
         "Agreement and scope",
-        "These terms apply to the tweet.stream website and hosted services operated by Vartabase AI. By using the service, you agree to these terms and acknowledge the privacy policy. If you do not agree, do not use the service. You must have authority to act for any account or organization you connect and meet applicable age requirements.",
+        "These terms apply to the tweet.stream website and describe use of the open-source software from this project. By using the service, you agree to these terms and acknowledge the privacy policy. If you do not agree, do not use the service. You must have authority to act for any account or organization you connect and meet applicable age requirements.",
       ],
       [
         "What the service does",
-        "tweet.stream provides an interface between authorized clients and the X API, including MCP tools for posting, replying, retrieving posts, reading a timeline, searching, and inspecting an account profile. The interactive rink is a local demonstration: its shots, scores, and example responses do not perform X actions. Hosted access requires a configured service and valid authorization.",
+        "tweet.stream provides an interface between authorized clients and the X API, including MCP tools for posting text or image updates, replying, retrieving posts, reading a timeline, searching, and inspecting an account profile. The interactive rink is a local demonstration: its shots, scores, and example responses do not perform X actions. The website demo does not perform X actions. To use the MCP, run the software yourself and authorize it with your own X Developer App.",
       ],
       [
         "Your account and agent actions",
@@ -71,7 +71,7 @@ export const policies = {
       ],
       [
         "Content and permissions",
-        "You retain rights you hold in the content you submit. You authorize us to process and transmit that content only as needed to provide your requested service. You must have the rights and permissions required for your content and use of third-party information. AI-generated content may be inaccurate; you are responsible for checking it before publication. X content remains subject to X’s rules and the rights of its owners.",
+        "You retain rights you hold in the content you submit. When you self-host, you authorize the software you operate to transmit content as needed for the actions you request. You must have the rights and permissions required for your content and use of third-party information. AI-generated content may be inaccurate; you are responsible for checking it before publication. X content remains subject to X’s rules and the rights of its owners.",
       ],
       [
         "Third-party access and costs",

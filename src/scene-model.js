@@ -193,6 +193,16 @@ export function createArena() {
   ctx.fillText("OPEN SOURCE. OPEN ICE.", W / 2, 95);
   ctx.font = "600 28px sans-serif";
   ctx.fillText("T W E E T . S T R E A M", W / 2, H - 75);
+
+  ctx.font = "700 20px sans-serif";
+  ctx.fillStyle = "#2c729955";
+  ctx.fillText("DEFENSIVE ZONE · BYOC", px(-3.8), 135);
+  ctx.fillText("YOUR KEYS · YOUR ICE", px(-3.8), H - 110);
+
+  ctx.fillText("NEUTRAL ZONE · LOCAL MCP", px(0), 135);
+
+  ctx.fillText("ATTACK ZONE · AGENT IN PLAY", px(3.8), 135);
+  ctx.fillText("SIX TOOLS · UNFAIR ADVANTAGE", px(3.8), H - 110);
   ctx.restore();
   const texture = new THREE.CanvasTexture(iceCanvas);
   texture.colorSpace = THREE.SRGBColorSpace;
