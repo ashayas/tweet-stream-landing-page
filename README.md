@@ -2,8 +2,8 @@
 
 A small, independently versioned marketing app for **tweet.stream**. Vite, vanilla JavaScript, CSS, and Three.js; no backend, analytics, cookies, external fonts, or live X calls.
 
-- **Private website repository:** `ashayas/tweet-stream-landing-page`
-- **Public core API / MCP repository:** https://github.com/ashayas/tweetstream
+- **Website repository:** https://github.com/ashayas/tweet-stream-landing-page
+- **Core API / MCP repository:** https://github.com/ashayas/tweetstream
 - **Local website checkout:** `tweet_stream/landing-page` (ignored by the parent repository)
 
 ## Run locally
@@ -80,6 +80,6 @@ npm run test:production # checks the built site and JavaScript-disabled legal pa
 
 Tests cover shot outcomes, six tool selectors, keyboard tab navigation, scoring and misses, clipboard configurations, direct legal routes, mobile overflow, reduced motion, and WebGL failure.
 
-## Ownership
-
-This private landing-page repository and its artwork are separate from the Apache-2.0 core server. All rights reserved unless separately granted. The shared bird artwork may be used to identify tweet.stream and its MCP server. Third-party dependency and font licenses continue to apply.
+## License
+ 
+Apache-2.0. The shared bird artwork may be used to identify tweet.stream and its MCP server. Third-party dependency and font licenses continue to apply.
